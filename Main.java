@@ -13,6 +13,7 @@ import java.util.Map;
     private String name;
     private boolean available;
 
+
     public Car(String name) {
         this.name = name;
         this.available = true;
