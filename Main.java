@@ -29,7 +29,31 @@ import java.util.Map;
         this.available = available;
     }
 }
+class Customer {
+    private String name;
+    private Car hiredCar;
 
+    public Customer(String name) {
+        this.name = name;
+        this.hiredCar = null;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Car getHiredCar() {
+        return hiredCar;
+    }
+
+    public void setHiredCar(Car hiredCar) {
+        this.hiredCar = hiredCar;
+    }
+
+    public void returnCar() {
+        this.hiredCar=null;
+}
+}
 
 class CarHiringSystem extends JFrame {
     private ArrayList<Car> cars;
