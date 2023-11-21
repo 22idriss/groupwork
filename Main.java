@@ -31,7 +31,68 @@ import java.util.Map;
 }
 
 
+class CarHiringSystem extends JFrame {
+    private ArrayList<Car> cars;
+    private Map<String, Customer> customers;
+    private JTextArea outputTextArea;
 
+    public CarHiringSystem() {
+        // Initialize cars
+        cars = new ArrayList<>();
+        cars.add(new Car("Tesla Model S 2019"));
+        cars.add(new Car("Ford Ranger 2020"));
+        cars.add(new Car("Mercedes S550"));
+
+        // Initialize customers
+        customers = new HashMap<>();
+        customers.put("idris", new Customer("Idris"));
+        customers.put("Sophia", new Customer("Sophia"));
+
+        // Set up GUI components
+        setTitle("Car Hiring System");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        outputTextArea = new JTextArea();
+        outputTextArea.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(outputTextArea);
+
+        JButton hireButton = new JButton("Hire Car");
+        hireButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                hireCar();
+            }
+        });
+
+        JButton returnButton = new JButton("Return Car");
+        returnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                returnCar();
+            }
+        });
+
+        JPanel panel = new JPanel();
+        panel.add(scrollPane);
+        panel.add(hireButton);
+        panel.add(returnButton);
+
+        add(panel);
+
+        updateCarList();
+
+        setVisible(true);
+    }
+
+    private void updateCarList() {
+        outputTextArea.setText("Available Cars:\n");
+        for (Car car : cars) {
+            if (car.isAvailable()) {
+                outputTextArea.append(car.getName() + "\n");
+            }
+        }
+    }
 
 
 
